@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>UNIANDES-PUYO INVENTARIADO</title>
+    </h:head>
+
+    <h:body >
+        <table cellspacing="10px">
+            <tr>
+                <td id="top" colspan="3">
+                    <ui:insert name="top">
+                        <h:form>
+                        <div align="center">                            
+                            <p:panelGrid >
+                                <f:facet name="header">
+                                    <p:graphicImage value="/Imagenes/baner.png" width="1300px"  height="200px" />
+                                </f:facet>
+                            </p:panelGrid>                            
+                        </div>
+                    </h:form>
+                    </ui:insert>
+                                                            
+                </td>
+            </tr>
+            <tr>
+                <td id="left">
+                    <ui:insert name="left"></ui:insert>
+                    <h:form>  
+                        <p:growl id="messages" showDetail="false"/>
+                        <p:menu>
+                            <p:submenu label="Uniandes">
+                                <p:menuitem value="Inicio" update="messages" url="/vistas/Principal/Arranque.faces"  />
+                                <p:menuitem value="Misión - Visión" update="messages" />
+                            </p:submenu>
+                            <p:submenu label="Personal">
+                                <p:menuitem value="Usuarios" update="messages" url="/vistas/Usuario/inicio.faces " />
+                                <p:menuitem value="Adminitradores" update="messages" url="/vistas/Administrador/inicio.faces"/>
+                            </p:submenu>
+                        </p:menu>
+                    </h:form>
+                </td>
+                <td id="content">
+                    <ui:insert name="content">Content</ui:insert>
+                    
+                </td>
+                <td id="right">
+                    <ui:insert name="right"></ui:insert>
+                                        
+                </td>
+            </tr>
+            <tr>
+                <td id="bottom" colspan="3">
+                    <ui:insert name="bottom" ></ui:insert>
+                    Develop by Students of VIII Level<br/>
+                    2017
+                </td>
+            </tr>
+        </table>
+    </h:body>
+
+</html>

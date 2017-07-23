@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../administrador.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+
+
+        <h:form>
+
+
+            <!-- aqui se pondra los subemnus de localidad  -->
+                
+                <p:panel id="panel" header="Search Form" style="margin-bottom:10px;">
+                    
+                      <p:selectOneListbox id="advanced" value="#{cLugar.lista}" var="t" filter="true" filterMatchMode="contains">
+                            <f:selectItem itemLabel="Select One" itemValue="" noSelectionOption="true" />
+                            <f:selectItems value="#{t.id}"  itemLabel="#{t.nombre}"  />
+                      </p:selectOneListbox>
+                </p:panel>
+            <!-- aqui se encuentra el grafico del form -->
+
+            <p:growl id="growl" showDetail="true" />
+            <p:poll interval="3" update="growl" />
+            <h:panelGrid columns="2" columnClasses="left,right"  style="width:90% ">
+
+                <p:chart type="line" model="#{chart_responsive.lineModel2}" style="height:300px;" widgetVar="chart"/>
+
+
+                <!-- aqui se pondra el listado de que muestra la consulta -->
+
+                <p:panel id="pnlProducto">
+
+                    <p:dataTable 
+                        id="tblUsuario" 
+                        var="cli"
+                        value="#{cLugar.lista}"
+                        selectionMode="single"
+                        selection="#{cLugar.selectedLugar}"
+                        rowKey="#{cli.id}"
+                        rows="8" paginator="true" 
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rowsPerPageTemplate="6,12,16">
+                        <f:facet name="header">
+                            Rios de la localidad  
+                        </f:facet>
+                        <p:column headerText="Nombre del Rio en la localidad " style="width: 80%">
+                            <h:outputText value="#{cli.nombre}"/>
+                        </p:column>
+                        <p:column headerText="Descripcion u Observaciones" style="width: 80%">
+                            <h:outputText value="#{cli.observacion} "/>
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>   
+
+
+                <!-- termino de la tabla listado  -->
+            </h:panelGrid>
+
+        </h:form>
+
+
+    </ui:define>
+
+</ui:composition>
